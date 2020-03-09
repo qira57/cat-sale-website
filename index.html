@@ -163,6 +163,12 @@
 			.exit img{
 				width: 20px;			
 			}
+			.description-img{
+				height: 74vh;
+				position: relative;
+				top: 3vh;
+				left: 3vh;
+			}
 		</style>
 	</head>
 	<body>
@@ -243,10 +249,7 @@
 					$("<img>")
 						.appendTo(".mockup")
 						.attr("src", currImg.attr("src"))
-						.css("height", "74vh")
-						.css("position","relative")
-						.css("top","3vh")
-						.css("left", "3vh");
+						.addClass("description-img");
 				};
 				var offClick = function(){
 					$(".mask")
