@@ -161,13 +161,35 @@
 				z-index: 7;
 			}
 			.exit img{
-				width: 20px;			
+				width: 2vw;			
 			}
 			.description-img{
 				height: 74vh;
 				position: relative;
 				top: 3vh;
 				left: 3vh;
+				float: left;
+			}
+			.description-text{
+				color: white;
+				position: relative;
+				top: 5vh;
+				left: 10vh;
+				max-width: 70vw;
+			}
+			.description-sale{
+				position: relative;
+				top:70vh;
+				left: 1vw;
+			}
+			.description-name{
+				position: relative;
+				top: 2vh;
+				font-size: 2em;
+				background-color: rgba(255,255,255,0.5);
+				border-radius: 15px;
+				display: inline;
+				right: 21vw;
 			}
 		</style>
 	</head>
@@ -235,6 +257,9 @@
 		<script id = "gallery">
 			$(".cat").each(function(){
 				var currImg = $(this);
+				var description = currImg.siblings().find("p");
+				var sale = currImg.siblings("span");
+				var name = currImg.siblings().find("h3");
 				var onClick = function(){
 					$(".mask.hide")
 						.css("visibility","visible")
@@ -246,10 +271,24 @@
 						.animate({
 							opacity: 1
 						}, 300);
-					$("<img>")
+					currImg
+						.clone()
 						.appendTo(".mockup")
 						.attr("src", currImg.attr("src"))
+						.removeClass("cat")
 						.addClass("description-img");
+					description
+						.clone()
+						.appendTo(".mockup")
+						.addClass("description-text")
+					sale
+						.clone()
+						.appendTo(".mockup")
+						.addClass("description-sale");
+					name
+						.clone()
+						.appendTo(".mockup")
+						.addClass("description-name");
 				};
 				var offClick = function(){
 					$(".mask")
@@ -257,6 +296,10 @@
 					$(".mockup > img").remove();
 					$(".mask")
 						.css("opacity","0");
+					$(".description-text").remove();
+					$(".description-sale").remove();
+					$(".description-name").remove();
+					
 				};
 				currImg.click(onClick);
 				$(".exit").click(offClick);
