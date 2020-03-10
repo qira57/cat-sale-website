@@ -99,19 +99,19 @@
 			img.cat{
 				width: 100%;
 			}
-			.description{
+			.describe{
 				position: relative;
 				bottom: 4px;
 				color: #114;
 				background-image: linear-gradient(#F3F3F3, #FFF);
 				height: 150px;
 			}
-			.description h3{
+			.describe h3{
 				padding-top: 0.6em;
 				text-align: center;
 				font-size: 1.7em;
 			}
-			.description p{
+			.describe p{
 				font-size: 1em;
 				padding-left: 20px;
 				padding-right: 20px;
@@ -125,7 +125,6 @@
 				color: red;
 				text-align: right;
 				font-size: 24px;
-				float: bottom;
 				float: right;
 				position: relative;
 				top: 15px;
@@ -142,15 +141,11 @@
 				visibility: hidden;
 			}
 			.mockup{
-				background-color: black;
-				position: fixed;
 				top: 10vh;
 				left: 9.4vw;
 				width: 80vw;
 				height: 80vh;
-				opacity: 0;
 				z-index: 6;
-				visibility: hidden;
 			}
 			.exit{
 				background-color: rgba(0,0,0,0);
@@ -178,9 +173,12 @@
 				max-width: 70vw;
 			}
 			.description-sale{
+				color: red;
+				font-size: 24px;
 				position: relative;
 				top:70vh;
 				left: 1vw;
+				float: right;
 			}
 			.description-name{
 				position: relative;
@@ -214,7 +212,7 @@
 			<div class = "grid-container">
 				<div class = "cat-listing">
 					<img class = "cat" src = "https://cdn131.picsart.com/320869505222201.jpg?type=webp&to=crop&r=256"/>
-					<div class = "description">
+					<div class = "describe">
 						<h3>"Name"</h3>
 						<p>Your description here</p>
 					</div>
@@ -222,7 +220,7 @@
 				</div>
 				<div class = "cat-listing">
 					<img class = "cat" src = "https://news.artnet.com/app/news-upload/2019/01/Cat-Photog-Feat-256x256.jpg"/>
-					<div class = "description">
+					<div class = "describe">
 						<h3>"Name"</h3>
 						<p>Your description here</p>
 					</div>
@@ -230,7 +228,7 @@
 				</div>
 				<div class = "cat-listing">
 					<img class = "cat" src = "https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/a9/13/a3/a913a3bf-d816-2214-decd-1b98e7c4bf35/source/256x256bb.jpg"/>
-					<div class = "description">
+					<div class = "describe">
 						<h3>"Name"</h3>
 						<p>Your description here</p>
 					</div>
@@ -238,7 +236,7 @@
 				</div>
 				<div class = "cat-listing">
 					<img class = "cat" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHU1RnWwX8G8Ucyc1HT7wN8FpSRi5QsDgPVxayDstVYvu74_Kr"/>
-					<div class = "description">
+					<div class = "describe">
 						<h3>"Name"</h3>
 						<p>Your description here</p>
 					</div>
@@ -284,6 +282,7 @@
 					sale
 						.clone()
 						.appendTo(".mockup")
+						.removeClass("sale")
 						.addClass("description-sale");
 					name
 						.clone()
@@ -292,15 +291,11 @@
 				};
 				var offClick = function(){
 					$(".mask")
-						.css("visibility", "hidden");
-					$(".mockup > img").remove();
-					$(".mask")
+						.css("visibility", "hidden")
 						.css("opacity","0");
-					$(".description-text").remove();
-					$(".description-sale").remove();
-					$(".description-name").remove();
-					
+					$("[class^='description']").remove();
 				};
+
 				currImg.click(onClick);
 				$(".exit").click(offClick);
 			})
